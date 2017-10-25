@@ -1,10 +1,10 @@
 #!/bin/bash
 ##
 # Micro Benchmarks Workload: sort, grep, wordcount
-# Need HADOOP 
+# Need HADOOP
 # To prepare and generate data:
 #  ./genData_MicroBenchmarks.sh
-# To run:  
+# To run:
 #  ./run_MicroBenchmarks.sh
 ##
 
@@ -28,23 +28,23 @@ else
 fi
 
 echo "ok. You chose $choice and we'll use ${algorithm[$choice-1]} Workload"
-Workloadtype=${algorithm[$choice-1]} 
+Workloadtype=${algorithm[$choice-1]}
 
 if [ "x$Workloadtype" == "xsort" ]; then
   ${HADOOP_HOME}/bin/hadoop fs -rmr ${WORK_DIR}/data-MicroBenchmarks/out/sort
   ${HADOOP_HOME}/bin/hadoop fs -rmr /sort-data/output
 
-  time ${HADOOP_HOME}/bin/hadoop jar  ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar  sort /sort-data /sort-data/output
+  ${HADOOP_HOME}/bin/hadoop jar  ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar  sort /sort-data /sort-data/output
 
 elif [ "x$Workloadtype" == "xgrep" ]; then
 
   ${HADOOP_HOME}/bin/hadoop fs -rmr ${WORK_DIR}/data-MicroBenchmarks/out/grep
-  time ${HADOOP_HOME}/bin/hadoop jar  ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar grep ${WORK_DIR}/data-MicroBenchmarks/in ${WORK_DIR}/data-MicroBenchmarks/out/grep a*xyz
+  ${HADOOP_HOME}/bin/hadoop jar  ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar grep ${WORK_DIR}/data-MicroBenchmarks/in ${WORK_DIR}/data-MicroBenchmarks/out/grep a*xyz
 
 elif [ "x$Workloadtype" == "xwordcount" ]; then
 
   ${HADOOP_HOME}/bin/hadoop fs -rmr ${WORK_DIR}/data-MicroBenchmarks/out/wordcount
-  time ${HADOOP_HOME}/bin/hadoop jar  ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar  wordcount  ${WORK_DIR}/data-MicroBenchmarks/in ${WORK_DIR}/data-MicroBenchmarks/out/wordcount
+  ${HADOOP_HOME}/bin/hadoop jar  ${HADOOP_HOME}/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar  wordcount  ${WORK_DIR}/data-MicroBenchmarks/in ${WORK_DIR}/data-MicroBenchmarks/out/wordcount
 
   echo "unknown cluster type: $clustertype"
-fi 
+fi
