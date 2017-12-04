@@ -8,6 +8,8 @@
 #  ./run_MicroBenchmarks.sh
 ##
 
+. ../conf.properties
+
 if [ ! -e $HADOOP ]; then
   echo "Can't find hadoop in $HADOOP, exiting"
   exit 1
