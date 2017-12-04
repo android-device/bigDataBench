@@ -1,2 +1,8 @@
 data-*/
 *.vim
+*.txt
+*log
+*.o
+BigDataGeneratorSuite/
+report
+experiments/
